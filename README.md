@@ -1,7 +1,10 @@
-# Welcome to my [Expense Tracker] app 👋
+# Welcome to my Expense Tracker app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-This project is created by finance tracking and handling the expense using [CRUD] and [Redux].
+
+## Description
+
+This project is created for finance tracking and handling the expense using [CRUD] and [Redux].
 
 ## Get started
 
