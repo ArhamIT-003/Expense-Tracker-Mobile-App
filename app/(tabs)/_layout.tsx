@@ -1,34 +1,53 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs, useRouter } from "expo-router";
+import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { Colors } from "@/constants/Colors";
+import IconButton from "@/components/UI/Icon-Button";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function TabsLayout() {
+  const router = useRouter();
   return (
     <Tabs
+      initialRouteName="AllExpenses"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+        headerStyle: { backgroundColor: Colors.App.background },
+        headerTitleStyle: { fontWeight: "light", color: "#fff" },
+        tabBarActiveTintColor: Colors.App.primary,
+        tabBarInactiveTintColor: Colors.App.secondary,
+        tabBarLabelStyle: { fontSize: 12 },
+        headerRight: () => {
+          return (
+            <IconButton
+              name="add"
+              color={"#fff"}
+              size={24}
+              onPress={() => router.push("AddExpense")}
+            />
+          );
+        },
+
+        tabBarStyle: {
+          backgroundColor: Colors.App.background,
+        },
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="RecentExpense"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          title: "Recent-Expense",
+          tabBarLabel: "Recent",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="hourglass" size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="AllExpenses"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          title: "All-Expenses",
+          tabBarLabel: "All",
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="calendar" size={size} color={color} />
           ),
         }}
       />
